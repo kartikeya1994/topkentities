@@ -28,17 +28,24 @@ with open('dict.txt','r') as f:
 #lines = [line.split('=')[0].strip().split(' ') for line in lines]
 # for i in range(len(lines)):
 # 	lines[i] = [t.lower() for t in lines[i]]
-
+#lines = lines[:1000]
 groups = dict()
 group_counts = dict()
-
+sorted_list = ['']*len(lines)
+i=0
 for l in lines:
 	e = l.split('=')[0].strip().lower().split(' ')
-	groups[getString(e)] = [e]
-	group_counts[getString(e)] = int(l.split('=')[1].strip())
-	print groups[getString(e)], group_counts[getString(e)]
+	e_key = getString(e)
+	if e_key in groups:
+		group_counts[e_key] += int(l.split('=')[1].strip())
+	else:
+		groups[e_key] = [e]
+		group_counts[e_key] = int(l.split('=')[1].strip())
+		sorted_list[i] = e_key
+		#print groups[e_key], group_counts[e_key]
+		i += 1
 
-keys = groups.keys()
+keys = sorted_list
 for i in range(len(keys)):
 	print i
 	if keys[i] not in groups:
@@ -58,7 +65,15 @@ for i in range(len(keys)):
 			group_counts[keys[i]] += group_counts[keys[j]]
 			#print groups[keys[i]]
 			del groups[keys[j]]
+			print group_counts['united states']
 			break
+		# elif checkSub(groups[keys[j]][0], groups[keys[i]][0]):
+		# 	groups[keys[j]] += groups[keys[i]]
+		# 	group_counts[keys[j]] += group_counts[keys[i]]
+		# 	#print groups[keys[i]]
+		# 	del groups[keys[i]]
+		# 	break
+print group_counts['united states']
 
 keys = groups.keys()
 vals = [group_counts[key] for key in keys]
