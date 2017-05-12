@@ -1,3 +1,4 @@
+### Given a counts file, collate similar entities by substring matching
 def getString(l):
 	ans = l[0]
 	for i in range(1,len(l)):

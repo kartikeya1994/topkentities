@@ -1,3 +1,4 @@
+// split collated file onto different lines
 // {
 split($0,a," = ");
 c = a[2];
