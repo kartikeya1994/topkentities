@@ -1,3 +1,8 @@
+/*
+Multi-threaded implementation.
+Counts the occurences of a set of entities in a given text.
+*/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

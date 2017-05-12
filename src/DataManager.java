@@ -1,3 +1,9 @@
+/*
+* Manage data input for the entity extractor
+* When creating an object, pass the string 'DB' or 'FILE'
+* as the source. 
+*/
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +21,15 @@ public class DataManager {
 	private Statement statement = null;
 	private ResultSet resultSet = null;
 	String source;
+
+	// if source is FILE, will pick all text files in this folder
 	private String folderName = "input";
+
+	// if source is DB, will read from the following database and table
+	final String colName = "body";
+	final String dbName = "declassification_cables";
+
+
 	List<String> fileNames = null;
 	ListIterator<String> listIter = null;
 	public final String FILE = "FILE";
@@ -26,8 +40,6 @@ public class DataManager {
 	int init;
 	int maxRows;
 	boolean done;
-	final String colName = "body";
-	final String dbName = "declassification_cables";
 	
 	
 	public DataManager(String source, int maxNumTexts)
@@ -43,6 +55,10 @@ public class DataManager {
 	}
 	
 	public String getNextText() throws SQLException{
+		/*
+		* acts like a generator, pools batchSize number of results and returns 1
+		* returns null when all texts have been read.
+		*/
 		//returns the next piece of text or null if reached end of source
 //		if(done)
 //			return null;

@@ -1,4 +1,6 @@
-
+/*
+Extract entities from a given text and count their occurences
+*/
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,9 +26,11 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class EntityExtractor {
 	private static final String outputFile = "result.txt";
-	private static final String source = "DB"; //FILE or DB
+	private static final String source = "DB"; //where to get texts from: FILE or DB
 	private static final boolean print_to_stdout = false;
-	private static final int trimThreshold = 30000; //number of iterations to trim hash table after
+	//number of iterations to trim hash table after
+	// hash table can grow too large and exceed memory
+	private static final int trimThreshold = 30000; 
 	private static final int maxNumTexts = 210000;
 	private static final int trimmedSize = 1000000; // size of hash table after trimming
 	

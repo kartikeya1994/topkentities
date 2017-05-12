@@ -30,7 +30,7 @@ public class TestCount {
 		br = new BufferedReader(fr);
 		
 		
-		matchString("un dos hi my un dos. ha name is kartikeya un dos.","un dos");
+		matchString("un dos hi my un dos. hi name is kartikeya un dos.","un dos");
 		long startTime = System.nanoTime();
 		String text;
 		//store entities and counts in hash map
